@@ -152,7 +152,7 @@ void loop() {
     float h = dht.readHumidity();
     int   raw = analogRead(LDR_PIN);
     int   lux = map(raw, ldrMin, ldrMax, 0, 100);
-    lux = constrain(lux, 0, 100);
+    lux = constrain(lux, 100, 0);
 
     sumTemp += t;
     sumHum  += h;
@@ -409,3 +409,4 @@ bool btnPressed(int pin, unsigned long &last) {
   }
   return false;
 }
+
