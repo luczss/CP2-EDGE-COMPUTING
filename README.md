@@ -177,25 +177,38 @@ RTClib
 
 4️⃣ Faça upload para o Arduino
 Selecione a porta COM
+
 Escolha a placa Arduino Uno
 Clique em Upload
+
+
 📷 Demonstração Esperada
 Tela Inicial
+
+
 VINHERIA AGNELLO
 FIAP CP-02
+
+
 Tela de Temperatura
 Temperatura:
 14.5 C   OK
+
 Tela de Umidade
 Umidade:
 65.2%  OK
+
 Tela de Luminosidade
 Luz:45%
 
 👨‍💻 Integrantes do Grupo
+
 Lucas Dos Santos Oliveira	RM571718	
+
 Eric Kang RM572575	
+
 Diego Caio De Ulhôa Augusto	RM572190	
+
 Enzo Leme RM572148
 
 🏫 Instituição
@@ -217,8 +230,11 @@ Projeto desenvolvido exclusivamente para fins acadêmicos.
 O projeto Vinheria Agnello demonstra a aplicação prática de conceitos de:
 
 Edge Computing
+
 Automação
+
 Sistemas embarcados
+
 Monitoramento ambiental inteligente
 
 utilizando uma arquitetura robusta, modular e escalável para controle de ambientes sensíveis como vinherias.
