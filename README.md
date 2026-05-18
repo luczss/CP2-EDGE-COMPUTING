@@ -151,9 +151,13 @@ Tratamento de Eventos
 Debounce de Botões
 Programação Modular
 Calibração Dinâmica
+
 ▶️ Como Executar
+
 1️⃣ Clone o repositório
-git clone https://github.com/seu-usuario/vinheria-agnello.git
+
+git clone https://github.com/luczss/CP2-EDGE-COMPUTING.git
+
 2️⃣ Abra na Arduino IDE
 
 Abra o arquivo:
@@ -170,6 +174,7 @@ Instale:
 LiquidCrystal_I2C
 DHT sensor library
 RTClib
+
 4️⃣ Faça upload para o Arduino
 Selecione a porta COM
 Escolha a placa Arduino Uno
@@ -185,28 +190,18 @@ Tela de Umidade
 Umidade:
 65.2%  OK
 Tela de Luminosidade
-Luz:
-45%
-📈 Melhorias Futuras
-📡 Integração com IoT Cloud
-📱 Dashboard Web/Mobile
-☁️ Armazenamento em nuvem
-📊 Gráficos em tempo real
-🔔 Alertas via WhatsApp/Telegram
-🌎 Integração MQTT
-🤖 Inteligência Artificial para previsão climática
-👨‍💻 Integrantes do Grupo
-Nome	RM	Função
-Nome do Integrante 1	RM000000	Desenvolvimento Backend/Embarcado
-Nome do Integrante 2	RM000000	Hardware & Sensores
-Nome do Integrante 3	RM000000	Documentação & Testes
-Nome do Integrante 4	RM000000	Integração e Qualidade
-🏫 Instituição
+Luz:45%
 
+👨‍💻 Integrantes do Grupo
+Lucas Dos Santos Oliveira	RM571718	
+Eric Kang RM572575	
+Diego Caio De Ulhôa Augusto	RM572190	
+Enzo Leme RM572148
+
+🏫 Instituição
 FIAP — Faculdade de Informática e Administração Paulista
 
 Disciplina:
-
 Edge Computing & Computer Systems
 
 Checkpoint:
