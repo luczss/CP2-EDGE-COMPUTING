@@ -7,89 +7,149 @@ O projeto Vinheria Agnello foi desenvolvido como parte do Checkpoint 02 da disci
 O sistema tem como objetivo realizar o monitoramento inteligente das condições ambientais de uma vinheria, garantindo que fatores essenciais para a conservação dos vinhos — como:
 
 🌡️ Temperatura
+
 💧 Umidade
+
 💡 Luminosidade
 
 permaneçam dentro dos níveis ideais.
 
 A solução utiliza sensores integrados ao Arduino para capturar dados em tempo real, exibir informações em um display LCD, gerar alertas visuais e sonoros e armazenar registros históricos na EEPROM.
 
+
+
 🚀 Funcionalidades
+
 ✅ Monitoramento em Tempo Real
+
 Leitura contínua da:
+
 Temperatura
+
 Umidade
+
 Luminosidade
+
+
+
 ✅ Sistema Inteligente de Alertas
 
 O sistema possui três níveis de status:
 
 Status	LED	Condição
+
 Normal	🟢 Verde	Ambiente ideal
+
 Atenção	🟡 Amarelo	Valores próximos do limite
+
 Crítico	🔴 Vermelho	Valores fora do ideal
 
 Além disso:
 
 🔊 Buzzer sonoro para alertas críticos
+
 Frequências diferentes para WARNING e CRITICAL
+
+
 ✅ Display LCD Interativo
 
 Exibição automática de:
 
 Luminosidade
+
 Temperatura
+
 Umidade
+
 Horário em tempo real via RTC
 
 Com:
 
 Troca automática de telas
+
 Ícones personalizados
+
 Animação inicial
+
+
 ✅ Sistema de Configuração (Menu Setup)
 
 Através de botões físicos, o usuário pode configurar:
 
 🌍 Fuso horário UTC
+
 🌡️ Unidade de temperatura:
+
 Celsius
+
 Fahrenheit
+
 🌐 Idioma:
+
 Português
+
 Inglês
+
+
 ✅ Armazenamento de Logs
 
 Utilização da EEPROM para:
 
 Registro histórico dos sensores
+
 Salvamento de estados críticos
+
 Verificação de integridade com checksum
+
+
 ✅ Calibração Automática de Luminosidade
 
 O sensor LDR realiza:
 
 Ajuste automático de valores mínimos e máximos
+
 Conversão dinâmica para percentual de luminosidade
+
+
+
 🛠️ Tecnologias Utilizadas
+
 Hardware
+
 Arduino Uno
+
 Sensor DHT22
+
 Sensor LDR
+
 RTC DS1307
+
 LCD I2C 16x2
+
 EEPROM
+
 LEDs
+
 Buzzer
+
 Push Buttons
+
 Software
+
 Arduino IDE
+
 Linguagem C/C++
+
 Bibliotecas:
+
 Wire.h
+
 LiquidCrystal_I2C.h
+
 DHT.h
+
 EEPROM.h
+
 RTClib.h
 
 
@@ -103,13 +163,11 @@ RTClib.h
                           |
 
                           v
-+-------------+    +-------------+    +----------------+
 
-| Sensor LDR  | -> |  Arduino    | -> | LCD I2C 16x2 |
-
-
-+-------------+    +-------------+    +----------------+
-
++-------------+     +-------------+       +--------------+
+| Sensor LDR  |     |  Arduino    |       | LCD I2C 16x2 |
++-------------+     +-------------+       +--------------+
+  
                           |
                           v
                 +------------------+
