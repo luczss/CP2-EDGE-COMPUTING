@@ -28,7 +28,7 @@
 // ── Objetos ──────────────────────────────────────────────────
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 DHT dht(DHT_PIN, DHT_TYPE);
-RTC_DS1307 rtc;
+RTC_DS3231 rtc;
 
 // ── Configurações (default) ──────────────────────────────────
 int  utcOffset   = -3;    // UTC-3 (Brasília)
@@ -105,7 +105,7 @@ void setup() {
     lcd.setCursor(0, 0); lcd.print("RTC nao encontrado");
     while (1);
   }
-  if (!rtc.isrunning()) {
+  if (rtc.lostPower()) {
     rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   }
 
@@ -200,7 +200,7 @@ void showLogo() {
     delay(80);
   }
   lcd.setCursor(0, 1);
-  lcd.write(byte(0)); lcd.print("   FIAP CP-02  ");
+  lcd.write(byte(0)); lcd.print("   MOOCA  ");
   lcd.write(byte(1));
   delay(1500);
 
@@ -310,31 +310,117 @@ void handleAlerts() {
   }
 }
 
-// ── LOG NA EEPROM ─────────────────────────────────────────────
+// ── LOG NA EEPROM + SERIAL MONITOR ───────────────────────────
 void saveLog() {
+
   int16_t t16 = (int16_t)(avgTemp * 10);
   int16_t h16 = (int16_t)(avgHum  * 10);
   int16_t l16 = (int16_t)(avgLux);
+
   uint8_t flags = 0;
+
+  // Flags de alerta
   if (avgTemp < 10 || avgTemp > 18) flags |= 0x01;
   if (avgHum  < 50 || avgHum  > 80) flags |= 0x02;
   if (avgLux  < 20 || avgLux  > 80) flags |= 0x04;
+
+  // Checksum
   uint8_t chk = (uint8_t)(t16 ^ h16 ^ l16 ^ flags);
 
+  // Salva na EEPROM
   EEPROM.put(logAddr,     t16);
   EEPROM.put(logAddr + 2, h16);
   EEPROM.put(logAddr + 4, l16);
   EEPROM.put(logAddr + 6, flags);
   EEPROM.put(logAddr + 7, chk);
 
+  // Próximo endereço
   logAddr = (logAddr + LOG_SIZE) % (MAX_LOGS * LOG_SIZE);
 
-  Serial.print("LOG: T="); Serial.print(avgTemp, 1);
-  Serial.print("C H=");    Serial.print(avgHum,  1);
-  Serial.print("% L=");    Serial.print((int)avgLux);
-  Serial.print("% flags=0x"); Serial.println(flags, HEX);
-}
+  // ===== SERIAL MONITOR =====
 
+  DateTime now = rtc.now();
+
+  int hora = now.hour() + utcOffset;
+
+  if (hora < 0)  hora += 24;
+  if (hora > 23) hora -= 24;
+
+  Serial.println("====================================");
+
+  // Horário
+  Serial.print("Horario: ");
+
+  if (hora < 10) Serial.print("0");
+  Serial.print(hora);
+  Serial.print(":");
+
+  if (now.minute() < 10) Serial.print("0");
+  Serial.print(now.minute());
+  Serial.print(":");
+
+  if (now.second() < 10) Serial.print("0");
+  Serial.println(now.second());
+
+  // Temperatura
+  Serial.print("Temperatura: ");
+
+  if (useCelsius) {
+    Serial.print(avgTemp, 1);
+    Serial.println(" C");
+  } else {
+    float tempF = avgTemp * 9.0 / 5.0 + 32.0;
+    Serial.print(tempF, 1);
+    Serial.println(" F");
+  }
+
+  // Umidade
+  Serial.print("Umidade: ");
+  Serial.print(avgHum, 1);
+  Serial.println(" %");
+
+  // Luz
+  Serial.print("Luminosidade: ");
+  Serial.print(avgLux, 0);
+  Serial.println(" %");
+
+  // Status
+  bool critico =
+    (avgTemp < 10 || avgTemp > 18) ||
+    (avgHum  < 50 || avgHum  > 80) ||
+    (avgLux  < 20 || avgLux  > 80);
+
+  bool alerta =
+    !critico &&
+    (
+      (avgTemp < 12 || avgTemp > 16) ||
+      (avgHum  < 60 || avgHum  > 75) ||
+      (avgLux  < 30 || avgLux  > 70)
+    );
+
+  Serial.print("Status: ");
+
+  if (critico) {
+    Serial.println("CRITICO");
+  }
+  else if (alerta) {
+    Serial.println("ATENCAO");
+  }
+  else {
+    Serial.println("OK");
+  }
+
+  // Flags
+  Serial.print("Flags: 0x");
+  Serial.println(flags, HEX);
+
+  // Checksum
+  Serial.print("Checksum: ");
+  Serial.println(chk);
+
+  Serial.println("====================================");
+  Serial.println();
+}
 // ── CALIBRAÇÃO AUTOMÁTICA LDR ─────────────────────────────────
 void calibrateLDR() {
   int raw = analogRead(LDR_PIN);
@@ -409,4 +495,3 @@ bool btnPressed(int pin, unsigned long &last) {
   }
   return false;
 }
-
