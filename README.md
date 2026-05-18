@@ -91,6 +91,10 @@ LiquidCrystal_I2C.h
 DHT.h
 EEPROM.h
 RTClib.h
+
+
+
+
 🔌 Arquitetura do Sistema
                 +------------------+
                 |   Sensor DHT22   |
@@ -110,47 +114,91 @@ RTClib.h
                 +------------------+
                 | EEPROM + RTC     |
                 +------------------+
+
+
+
+
+                
 📋 Estrutura do Código
 
 O projeto foi dividido em módulos organizados para facilitar manutenção e escalabilidade.
 
 Função	Responsabilidade
+
 showLogo()	Exibe animação inicial
+
 showLux()	Mostra luminosidade
+
 showTemp()	Mostra temperatura
+
 showHum()	Mostra umidade
+
 handleAlerts()	Gerencia LEDs e buzzer
+
 saveLog()	Salva logs na EEPROM
+
 handleMenu()	Gerencia menu de configuração
+
 calibrateLDR()	Faz calibração automática
+
 btnPressed()	Realiza debounce dos botões
+
 ⚙️ Regras de Negócio
+
 🌡️ Temperatura Ideal
+
 Status	Faixa
+
 OK	12°C ~ 16°C
+
 Atenção	10°C ~ 18°C
+
 Crítico	Fora desse intervalo
+
 💧 Umidade Ideal
+
 Status	Faixa
+
 OK	60% ~ 75%
+
 Atenção	50% ~ 80%
+
 Crítico	Fora desse intervalo
+
 💡 Luminosidade Ideal
 Status	Faixa
+
 OK	30% ~ 70%
+
 Atenção	20% ~ 80%
+
 Crítico	Fora desse intervalo
+
+
+
 🧠 Conceitos Aplicados
+
 Edge Computing
+
 Sistemas Embarcados
+
 Monitoramento Inteligente
+
 Sensoriamento Ambiental
+
 Persistência de Dados
+
 Interação Homem-Máquina
+
 Tratamento de Eventos
+
 Debounce de Botões
+
 Programação Modular
+
 Calibração Dinâmica
+
+
 
 ▶️ Como Executar
 
@@ -185,10 +233,8 @@ Clique em Upload
 📷 Demonstração Esperada
 Tela Inicial
 
-
 VINHERIA AGNELLO
 FIAP CP-02
-
 
 Tela de Temperatura
 Temperatura:
@@ -201,6 +247,8 @@ Umidade:
 Tela de Luminosidade
 Luz:45%
 
+
+
 👨‍💻 Integrantes do Grupo
 
 Lucas Dos Santos Oliveira	RM571718	
@@ -210,6 +258,8 @@ Eric Kang RM572575
 Diego Caio De Ulhôa Augusto	RM572190	
 
 Enzo Leme RM572148
+
+
 
 🏫 Instituição
 FIAP — Faculdade de Informática e Administração Paulista
@@ -224,6 +274,8 @@ CP-02 — Sistema Inteligente de Monitoramento Ambiental
 📄 Licença
 
 Projeto desenvolvido exclusivamente para fins acadêmicos.
+
+
 
 ⭐ Considerações Finais
 
