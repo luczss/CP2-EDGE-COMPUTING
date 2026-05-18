@@ -298,7 +298,8 @@ Clique em Upload
 Tela Inicial
 
 VINHERIA AGNELLO
-FIAP CP-02
+
+MOOCA
 
 Tela de Temperatura
 Temperatura:
