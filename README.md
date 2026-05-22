@@ -332,9 +332,6 @@ Luz:45%
 ## Disciplina
 Edge Computing & Computer Systems
 
-## Checkpoint
-CP-02 — Sistema Inteligente de Monitoramento Ambiental
-
 ---
 
 # 📄 Licença
