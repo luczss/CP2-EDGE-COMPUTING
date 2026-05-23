@@ -31,6 +31,12 @@ https://wokwi.com/projects/464367007306848257
 
 ---
 
+# ▶️ Vídeo no YouTube
+
+https://youtu.be/6CPv-DlaVm8
+
+---
+
 # 🚀 Funcionalidades
 
 ## ✅ Monitoramento em Tempo Real
